@@ -1,0 +1,50 @@
+package com.tarena.crm.action;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+import com.tarena.crm.dao.impl.EmpDaoImpl;
+import com.tarena.crm.entity.User;
+
+import com.tarena.minispringmvc.servlet.Action;
+
+import com.tarena.minispringmvc.servlet.RequestPath;
+
+@Action
+public class UserAction {
+	@RequestPath(path = "/user/login.do")
+	public void login(HttpServletRequest request, HttpServletResponse response) {
+		User loginUser = null;
+		try {
+//			User user = (User) EntityUtil
+//					.getObject(request, User.class, "user");
+//			UserService userService = new UserServiceImpl();
+//			loginUser = userService.login(user);
+			String username = request.getParameter("user.username");
+			String password = request.getParameter("user.password");
+			EmpDaoImpl emp = new EmpDaoImpl();
+			String password2 = emp.findByAccount(username);
+			System.out.println(password2);
+			System.out.println(password);
+			if(password.equals(password2)){
+				request.getSession().setAttribute("loginUser", loginUser);
+				response.sendRedirect("/crm/main.do");
+			}else{
+				response.sendRedirect("/crm/login.do");
+				
+			}
+			
+			
+			
+//			if (loginUser == null) {
+//				response.sendRedirect("/crm/login.do");
+//			} else {
+//				request.getSession().setAttribute("loginUser", loginUser);
+//				response.sendRedirect("/crm/main.do");
+//			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

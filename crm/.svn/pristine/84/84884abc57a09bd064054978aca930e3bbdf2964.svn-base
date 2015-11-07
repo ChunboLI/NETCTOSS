@@ -1,0 +1,139 @@
+package com.tarena.crm.dao.impl;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.tarena.crm.entity.Customcare;
+import com.tarena.crm.entity.Customsource;
+import com.tarena.db.DBUtils;
+
+public class CustomSourceDaoImpl<T> extends BaseDaoImpl<Customsource> {
+
+	@Override
+	public Customsource add(Customsource entity) throws Exception {
+		Customsource customsource = new Customsource();
+		Connection conn =null;
+		PreparedStatement prep = null;
+		try {
+			conn = DBUtils.getConnection();
+			prep = conn.prepareStatement("insert into Customsource (source)values(?)");
+			prep.setString(1, entity.getSource());
+			prep.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally{
+			DBUtils.closeConnection(conn);
+			
+		}
+		return customsource;
+	}
+
+	@Override
+	public boolean delete(long id) throws Exception {
+		Connection conn =null;
+		PreparedStatement prep = null;
+		try {
+			conn = DBUtils.getConnection();
+			prep = conn.prepareStatement("delete from Customsource where id=?");
+			prep.setLong(1, id);
+			prep.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally{
+			DBUtils.closeConnection(conn);
+			
+		}
+		return true;
+	}
+
+	@Override
+	public boolean modify(Customsource entity) throws Exception {
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DBUtils.getConnection();
+			prep = conn.prepareStatement("update Customsource set source=? where id=?");
+			prep.setString(1, entity.getSource());
+			prep.setLong(2, entity.getId());
+			
+			prep.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally{
+			DBUtils.closeConnection(conn);
+			
+		}
+		return true;
+	}
+
+	@Override
+	public Customsource findById(long id) throws Exception {
+		Customsource c = new Customsource();
+		Connection conn = null;
+		PreparedStatement prep = null;
+		ResultSet rs = null;
+		try {
+			conn = DBUtils.getConnection();
+			prep = conn.prepareStatement("select * from Customsource where id =?");
+			prep.setLong(1, id);
+			rs = prep.executeQuery();
+			while(rs.next()){
+				String source = rs.getString("source");
+				c.setId((long)id);
+				c.setSource(source);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally{
+			DBUtils.closeConnection(conn);
+			
+		}
+		return c;
+	}
+
+	@Override
+	public List<Customsource> findByName(String name) throws Exception {
+		throw new Exception("此方法不能调用");
+	}
+
+	@Override
+	public List<Customsource> findAll() throws Exception {
+		List<Customsource> customsource = new ArrayList<Customsource>();
+		Connection conn = null;
+		PreparedStatement prep = null;
+		ResultSet rs = null;
+		try {
+			conn = DBUtils.getConnection();
+			prep = conn.prepareStatement("select * from Customsource");
+			rs = prep.executeQuery();
+			while(rs.next()){
+				long id = rs.getLong("id");
+				String source = rs.getString("source");
+				
+				Customsource c = new Customsource();
+				c.setId(id);
+				c.setSource(source);
+				
+				customsource.add(c);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally{
+			DBUtils.closeConnection(conn);
+			
+		}
+		return customsource;
+	}
+
+}

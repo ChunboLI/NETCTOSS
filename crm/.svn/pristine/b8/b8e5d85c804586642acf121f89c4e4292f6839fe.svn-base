@@ -1,0 +1,46 @@
+package com.tarena.crm.dao.impl;
+
+import java.util.List;
+
+import com.tarena.crm.entity.Customcare;
+
+
+public class CustomCareDaoImpl extends BaseDaoImpl<Customcare>{
+
+	@Override
+	public Customcare add(Customcare entity) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean delete(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modify(Customcare entity) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Customcare findById(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Customcare findByName(String name) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Customcare> findAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

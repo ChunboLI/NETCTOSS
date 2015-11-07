@@ -1,0 +1,127 @@
+package com.tarena.crm.entity;
+
+import java.util.Date;
+
+
+/**
+ * TbRelationRecod entity. @author MyEclipse Persistence Tools
+ */
+
+public class TbRelationRecod  implements java.io.Serializable {
+
+
+    // Fields    
+
+     private Long id;
+     private Long RCNameid;
+     private Date RTime;
+     private Date RNextTime;
+     private String RType;
+     private Long REmpid;
+     private String RTheme;
+     private String RRemarks;
+
+
+    // Constructors
+
+    /** default constructor */
+    public TbRelationRecod() {
+    }
+
+	/** minimal constructor */
+    public TbRelationRecod(Long RCNameid, Date RTime, Date RNextTime, String RType, Long REmpid, String RTheme) {
+        this.RCNameid = RCNameid;
+        this.RTime = RTime;
+        this.RNextTime = RNextTime;
+        this.RType = RType;
+        this.REmpid = REmpid;
+        this.RTheme = RTheme;
+    }
+    
+    /** full constructor */
+    public TbRelationRecod(Long RCNameid, Date RTime, Date RNextTime, String RType, Long REmpid, String RTheme, String RRemarks) {
+        this.RCNameid = RCNameid;
+        this.RTime = RTime;
+        this.RNextTime = RNextTime;
+        this.RType = RType;
+        this.REmpid = REmpid;
+        this.RTheme = RTheme;
+        this.RRemarks = RRemarks;
+    }
+
+   
+    // Property accessors
+
+    public Long getId() {
+        return this.id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getRCNameid() {
+        return this.RCNameid;
+    }
+    
+    public void setRCNameid(Long RCNameid) {
+        this.RCNameid = RCNameid;
+    }
+
+    public Date getRTime() {
+        return this.RTime;
+    }
+    
+    public void setRTime(Date RTime) {
+        this.RTime = RTime;
+    }
+
+    public Date getRNextTime() {
+        return this.RNextTime;
+    }
+    
+    public void setRNextTime(Date RNextTime) {
+        this.RNextTime = RNextTime;
+    }
+
+    public String getRType() {
+        return this.RType;
+    }
+    
+    public void setRType(String RType) {
+        this.RType = RType;
+    }
+
+    public Long getREmpid() {
+        return this.REmpid;
+    }
+    
+    public void setREmpid(Long REmpid) {
+        this.REmpid = REmpid;
+    }
+
+    public String getRTheme() {
+        return this.RTheme;
+    }
+    
+    public void setRTheme(String RTheme) {
+        this.RTheme = RTheme;
+    }
+
+    public String getRRemarks() {
+        return this.RRemarks;
+    }
+    
+    public void setRRemarks(String RRemarks) {
+        this.RRemarks = RRemarks;
+    }
+   
+
+
+
+
+
+
+
+
+}

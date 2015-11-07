@@ -1,0 +1,93 @@
+package com.tarena.crm.entity;
+
+
+
+/**
+ * TbHouse entity. @author MyEclipse Persistence Tools
+ */
+
+public class TbHouse  implements java.io.Serializable {
+
+
+    // Fields    
+
+     private Integer id;
+     private Integer HTypeid;
+     private String HAddress;
+     private Double HPrice;
+     private String HEnvironment;
+
+
+    // Constructors
+
+    /** default constructor */
+    public TbHouse() {
+    }
+
+	/** minimal constructor */
+    public TbHouse(Integer HTypeid, String HAddress, Double HPrice) {
+        this.HTypeid = HTypeid;
+        this.HAddress = HAddress;
+        this.HPrice = HPrice;
+    }
+    
+    /** full constructor */
+    public TbHouse(Integer HTypeid, String HAddress, Double HPrice, String HEnvironment) {
+        this.HTypeid = HTypeid;
+        this.HAddress = HAddress;
+        this.HPrice = HPrice;
+        this.HEnvironment = HEnvironment;
+    }
+
+   
+    // Property accessors
+
+    public Integer getId() {
+        return this.id;
+    }
+    
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getHTypeid() {
+        return this.HTypeid;
+    }
+    
+    public void setHTypeid(Integer HTypeid) {
+        this.HTypeid = HTypeid;
+    }
+
+    public String getHAddress() {
+        return this.HAddress;
+    }
+    
+    public void setHAddress(String HAddress) {
+        this.HAddress = HAddress;
+    }
+
+    public Double getHPrice() {
+        return this.HPrice;
+    }
+    
+    public void setHPrice(Double HPrice) {
+        this.HPrice = HPrice;
+    }
+
+    public String getHEnvironment() {
+        return this.HEnvironment;
+    }
+    
+    public void setHEnvironment(String HEnvironment) {
+        this.HEnvironment = HEnvironment;
+    }
+   
+
+
+
+
+
+
+
+
+}

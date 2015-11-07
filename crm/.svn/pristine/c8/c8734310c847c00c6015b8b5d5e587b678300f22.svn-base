@@ -1,0 +1,71 @@
+package com.tarena.crm.entity;
+
+
+
+/**
+ * TbDepartment entity. @author MyEclipse Persistence Tools
+ */
+
+public class TbDepartment  implements java.io.Serializable {
+
+
+    // Fields    
+
+     private Integer id;
+     private String DName;
+     private String DDescribe;
+
+
+    // Constructors
+
+    /** default constructor */
+    public TbDepartment() {
+    }
+
+	/** minimal constructor */
+    public TbDepartment(String DName) {
+        this.DName = DName;
+    }
+    
+    /** full constructor */
+    public TbDepartment(String DName, String DDescribe) {
+        this.DName = DName;
+        this.DDescribe = DDescribe;
+    }
+
+   
+    // Property accessors
+
+    public Integer getId() {
+        return this.id;
+    }
+    
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getDName() {
+        return this.DName;
+    }
+    
+    public void setDName(String DName) {
+        this.DName = DName;
+    }
+
+    public String getDDescribe() {
+        return this.DDescribe;
+    }
+    
+    public void setDDescribe(String DDescribe) {
+        this.DDescribe = DDescribe;
+    }
+   
+
+
+
+
+
+
+
+
+}

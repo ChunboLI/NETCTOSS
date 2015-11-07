@@ -1,0 +1,25 @@
+package com.tarena.crm.service;
+
+import java.util.List;
+
+import com.tarena.crm.entity.Email;
+
+public interface EmailService {
+	public Email sendEmail(Email email) throws Exception;//发送邮件
+	public Email keepEmail(Email email) throws Exception;//存草稿
+	
+	public List<Email> inbox(long receiver,boolean isSend) throws Exception;//收件箱 通过收件人用户id查找
+	public List<Email> inboxBySender(String sender,long receiver,boolean isSend) throws Exception;//收件箱 通过发件人查找
+	public List<Email> inboxByTheme(String theme,long receiver,boolean isSend) throws Exception;//收件箱 通过主题查找
+	public List<Email> inboxByContent(String content,long receiver,boolean isSend)throws Exception;//收件箱 通过内容查找
+	
+	public List<Email> outbox(long sender,boolean isSend) throws Exception;//发件箱 通过发件人id查找
+	public List<Email> outboxByReceiver(String receiver,long sender,boolean isSend) throws Exception;//发件箱 通过收件人id查找
+	public List<Email> outboxTheme(String theme,long sender,boolean isSend) throws Exception;//发件箱 通过主题查找
+	public List<Email> outboxContent(String content,long sender,boolean isSend)throws Exception;//发件箱 通过内容查找
+	
+	public List<Email> draftBox(long sender,boolean isSend) throws Exception;//草稿箱
+	
+	public boolean deleteEmail(long id) throws Exception;//删除邮件
+	public long findIdByName(String name) throws Exception;
+}

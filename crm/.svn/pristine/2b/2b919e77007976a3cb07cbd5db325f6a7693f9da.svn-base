@@ -1,0 +1,137 @@
+package com.tarena.crm.entity;
+
+import java.util.Date;
+
+
+/**
+ * TbCustomCare entity. @author MyEclipse Persistence Tools
+ */
+
+public class TbCustomCare  implements java.io.Serializable {
+
+
+    // Fields    
+
+     private Long id;
+     private Integer careCNameid;
+     private String careTheme;
+     private String careWay;
+     private Date careTime;
+     private Date careNextTime;
+     private String careRemarks;
+     private Integer careEmpid;
+     private Date careCreateDate;
+
+
+    // Constructors
+
+    /** default constructor */
+    public TbCustomCare() {
+    }
+
+	/** minimal constructor */
+    public TbCustomCare(Integer careCNameid, String careTheme, String careWay, Date careTime, Date careNextTime, Date careCreateDate) {
+        this.careCNameid = careCNameid;
+        this.careTheme = careTheme;
+        this.careWay = careWay;
+        this.careTime = careTime;
+        this.careNextTime = careNextTime;
+        this.careCreateDate = careCreateDate;
+    }
+    
+    /** full constructor */
+    public TbCustomCare(Integer careCNameid, String careTheme, String careWay, Date careTime, Date careNextTime, String careRemarks, Integer careEmpid, Date careCreateDate) {
+        this.careCNameid = careCNameid;
+        this.careTheme = careTheme;
+        this.careWay = careWay;
+        this.careTime = careTime;
+        this.careNextTime = careNextTime;
+        this.careRemarks = careRemarks;
+        this.careEmpid = careEmpid;
+        this.careCreateDate = careCreateDate;
+    }
+
+   
+    // Property accessors
+
+    public Long getId() {
+        return this.id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getCareCNameid() {
+        return this.careCNameid;
+    }
+    
+    public void setCareCNameid(Integer careCNameid) {
+        this.careCNameid = careCNameid;
+    }
+
+    public String getCareTheme() {
+        return this.careTheme;
+    }
+    
+    public void setCareTheme(String careTheme) {
+        this.careTheme = careTheme;
+    }
+
+    public String getCareWay() {
+        return this.careWay;
+    }
+    
+    public void setCareWay(String careWay) {
+        this.careWay = careWay;
+    }
+
+    public Date getCareTime() {
+        return this.careTime;
+    }
+    
+    public void setCareTime(Date careTime) {
+        this.careTime = careTime;
+    }
+
+    public Date getCareNextTime() {
+        return this.careNextTime;
+    }
+    
+    public void setCareNextTime(Date careNextTime) {
+        this.careNextTime = careNextTime;
+    }
+
+    public String getCareRemarks() {
+        return this.careRemarks;
+    }
+    
+    public void setCareRemarks(String careRemarks) {
+        this.careRemarks = careRemarks;
+    }
+
+    public Integer getCareEmpid() {
+        return this.careEmpid;
+    }
+    
+    public void setCareEmpid(Integer careEmpid) {
+        this.careEmpid = careEmpid;
+    }
+
+    public Date getCareCreateDate() {
+        return this.careCreateDate;
+    }
+    
+    public void setCareCreateDate(Date careCreateDate) {
+        this.careCreateDate = careCreateDate;
+    }
+   
+
+
+
+
+
+
+
+
+}

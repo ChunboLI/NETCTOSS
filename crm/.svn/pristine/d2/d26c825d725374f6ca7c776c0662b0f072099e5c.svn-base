@@ -1,0 +1,60 @@
+package com.tarena.crm.action;
+
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.alibaba.fastjson.JSONArray;
+import com.tarena.crm.entity.Email;
+import com.tarena.crm.entity.Emp;
+import com.tarena.crm.service.impl.EmailServiceImpl;
+import com.tarena.crm.service.impl.EmpServiceImpl;
+import com.tarena.minispringmvc.servlet.Action;
+import com.tarena.minispringmvc.servlet.RequestPath;
+
+@Action
+public class EmailAction {
+	@RequestPath(path="/sendMail.do")
+	public String sendMail(HttpServletRequest request,
+			HttpServletResponse response) throws Exception{
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		System.out.println("hahaha");
+		Email email = new Email();
+		long receiver = Long.parseLong(request.getParameter("receiver"));
+		long sender = Long.parseLong(request.getParameter("sender"));
+		String theme = request.getParameter("theme");
+		String content = request.getParameter("content");
+		System.out.println(receiver+" "+theme+" "+" "+content);
+		email.setContent(content);
+		email.setTheme(theme);
+		email.setReceiver(receiver);
+		email.setSender(sender);
+		EmailServiceImpl esi = new EmailServiceImpl();
+		try {
+			esi.sendEmail(email);
+			String str = "添加成功";
+			out.println(str);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		out.close();
+		return null;
+	}
+	@RequestPath(path="/getReceiver.do")
+	public void getReceiver(HttpServletRequest request,
+			HttpServletResponse response) throws Exception{
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		EmpServiceImpl esi = new EmpServiceImpl();
+		List<Emp> emps = esi.findAll();
+		Object json = JSONArray.toJSON(emps);
+		System.out.println("111");
+		String jsonStr = json.toString();
+		System.out.println(jsonStr);
+		out.println(jsonStr);
+		out.close();
+	}
+}

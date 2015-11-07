@@ -1,0 +1,119 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"
+prefix="c" %>
+
+<script type="text/javascript">
+	$(function(){
+		$('#info').click(seeinfo);
+	});
+	function seeinfo(){
+		$.ajax(
+			{
+				'url':'/crm/custom/see'
+			}
+		);
+	}
+	
+</script>
+<strong class="am-text-primary am-text-lg">客户信息</strong>&nbsp;/&nbsp;<small>客户相关</small>
+<hr/>
+<form class="am-form am-form-inline" role="form">
+	<div class="am-form-group am-u-sm-4">
+		<input type="text" class="am-form-field am-input-sm" placeholder="请输入关键字">
+	</div>
+	<div class="am-form-group am-form-select am-u-sm-2">
+	    <select class="am-input-sm">
+	    	<option value="option1">客户姓名</option>
+	    </select>
+  	</div>
+  	<a class="am-btn am-btn-warning am-btn-sm" href="#">
+		<i class="am-icon-search"></i>
+		搜索
+	</a>
+	<a class="am-btn am-btn-warning am-btn-sm" href="javascript:link('${pageContext.request.contextPath}/page/customer/customerAdd.jsp');">
+		<i class="am-icon-plus"></i>
+		添加
+	</a>
+</form>
+<br/>
+<div class="am-scrollable-horizontal">
+	<table class="am-table am-table-compact am-table-striped am-table-hover am-text-nowrap">
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>状态</th>
+				<th>来源</th>
+				<th>所属员工</th>
+				<th>类型</th>
+				<th>性别</th>
+				<th>手机</th>
+				<th>QQ</th>
+				<th>邮箱</th>
+				<th>职位</th>
+				<th>公司</th>
+				<th>备注</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${clist }"var="customer"
+						varStatus="s">
+						<tr>
+							<td>
+								${customer.name }
+							</td>
+							<td>
+								${customer.status}
+							</td>
+							<td>
+								${customer.source }
+							</td>
+							<td>
+								${customer.belongTo}
+							</td>
+							<td>
+								${customer.type }
+							</td>
+							<td>
+								${customer.gender }
+							</td> 
+							<td>
+								${customer.mobliePhone }
+							</td> 
+							<td>
+								${customer.qq }
+							</td> 
+							<td>
+								${customer.email }
+							</td> 
+							<td>
+								${customer.job }
+							</td> 
+							<td>
+								${customer.company }
+							</td> 
+							<td>
+								${customer.remarks }
+							</td> 
+							<td></td> 
+							<td></td>    
+							<td>
+					<a href="javascript:link('${pageContext.request.contextPath}/page/customer/customerEdit.jsp');">编辑</a>
+					<a id="info" href="javascript:link('${pageContext.request.contextPath}/page/customer/customerInfo.jsp?id=${customer.id }');">详情</a>
+					<a href="#">删除</a>
+				</td>
+						</tr>
+						</c:forEach>
+				
+		</tbody>
+	</table>
+</div>
+<ul class="am-pagination am-pagination-right">
+	<li class="am-disabled"><a href="#">&laquo;</a></li>
+	<li class="am-active"><a href="#">1</a></li>
+	<li><a href="#">2</a></li>
+	<li><a href="#">3</a></li>
+	<li><a href="#">4</a></li>
+	<li><a href="#">5</a></li>
+	<li><a href="#">&raquo;</a></li>
+</ul>

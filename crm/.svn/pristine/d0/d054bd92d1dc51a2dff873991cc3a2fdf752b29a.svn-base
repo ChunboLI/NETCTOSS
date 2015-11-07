@@ -1,0 +1,45 @@
+package com.tarena.crm.dao.impl;
+
+import java.util.List;
+
+import com.tarena.crm.entity.TbDepartment;
+
+public class DepartmentDaoImpl extends BaseDaoImpl<TbDepartment>{
+
+	@Override
+	public TbDepartment add(TbDepartment entity) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean delete(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modify(TbDepartment entity) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public TbDepartment findById(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TbDepartment findByName(String name) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<TbDepartment> findAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

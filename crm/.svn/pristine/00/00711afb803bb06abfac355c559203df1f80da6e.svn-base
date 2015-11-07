@@ -1,0 +1,161 @@
+set names utf8;
+drop database if exists db_crm;
+create database db_crm charset utf8;
+use db_crm;
+
+/*测试Demo*/
+drop table if exists tb_user;
+create table tb_user (
+	id bigint primary key auto_increment, 
+	username varchar(50) unique not null,
+	password varchar(50) not null,
+	name varchar(20),
+	birthday date
+) engine=InnoDB default charset=utf8;
+/*创建用户表*/
+create table tb_custom(/*客户表*/
+	id bigint primary key auto_increment not null,
+	c_name varchar(30) unique not null,
+	c_job varchar(10) not null,
+	c_gender_id int not null,
+	c_birthday date ,
+	c_qq varchar(13) not null,
+	c_weibo varchar(10),
+	c_msn varchar(10),
+	c_create_empid bigint not null,
+	c_status_id int(5) not null,
+	c_source_id int(5) not null,
+	c_type_id int(5) not null,
+	c_email varchar(20) not null,
+	c_mobile_phone varchar(12) not null,
+	c_phone varchar(10),
+	c_address varchar(30),
+	c_company varchar(20) not null,
+	c_modify_empid int(10),
+	c_remarks varchar(100),
+	c_create_date date not null,
+	c_belong_empid bigint
+) engine=InnoDB default charset=utf8;
+/*客户关怀表*/
+create table tb_custom_care(
+	id bigint primary key auto_increment not null,
+	care_c_nameid int(10) not null,
+	care_theme varchar(40) not null,
+	care_way varchar(20) not null,
+	care_time date not null,
+	care_next_time date not null,
+	care_remarks varchar(100),
+	care_empid int(10),
+	care_create_date date not null
+) engine=InnoDB default charset=utf8;
+/*客户类型表*/
+create table tb_custom_type(
+	id bigint primary key auto_increment not null,
+	c_type varchar(20) not null
+) engine=InnoDB default charset=utf8;
+/*客户状态表*/
+create table tb_custom_status(
+	id bigint primary key auto_increment not null,
+	c_status varchar(20) not null
+)engine=InnoDB default charset=utf8;
+/*客户来源*/
+create table tb_custom_source(
+	id bigint primary key auto_increment not null,
+	c_source varchar(20) not null
+)engine=InnoDB default charset=utf8;
+/*联系记录*/
+create table tb_relation_recod(
+	id bigint primary key auto_increment not null,
+	r_c_nameid bigint not null,
+	r_time date not null,
+	r_next_time date not null,
+	r_type varchar(20) not null,
+	r_empid bigint not null,
+	r_theme varchar(40) not null,
+	r_remarks varchar(100)
+)engine=InnoDB default charset=utf8;
+/*联系人*/
+create table tb_linkman(
+	id bigint primary key auto_increment not null,
+	l_c_nameid bigint not null,
+	l_name varchar(20) not null,
+	l_gender_id bigint,
+	l_job varchar(20),
+	l_mobile_phone varchar(12) not null, 
+	l_relationship varchar(10) not null
+)engine=InnoDB default charset=utf8;
+
+/*gender 性别*/
+create table tb_gender(
+	id int primary key not null,
+	gender varchar(4) not null
+) engine=InnoDB default charset=utf8;
+
+/*员工表*/
+create table tb_emp(/*员工表*/
+	id bigint primary key auto_increment not null,
+	e_name varchar(20) not null,
+	e_gender_id int not null,
+	e_nation varchar(10),
+	e_educational varchar(10),
+	e_departmentid int,
+	e_phone varchar(10),
+	e_pay_card varchar(20) unique not null,
+	e_id_card varchar(20) unique not null ,
+	e_empid bigint not null,
+	e_account varchar(20) unique not null,
+	e_password varchar(20) not null,
+	e_marriage varchar(10),
+	e_partid int not null,
+	e_interest varchar(50),
+	e_mobile_phone varchar(12) not null,
+	e_address varchar(30),
+	e_email varchar(20),
+	e_create_date date not null,
+	e_modify_empid int,
+	e_delete_status boolean default 1
+) engine=InnoDB default charset=utf8;
+
+/*部门表*/
+create table tb_department(
+	id int primary key auto_increment not null,
+	d_name varchar(20) not null,
+	d_describe varchar(50)
+)
+
+/*房屋表*/
+create table tb_house(
+	id int primary key auto_increment not null,
+	h_typeid int not null,
+	h_address varchar(30) not null,
+	h_price double not null,
+	h_environment varchar(50)
+)
+/*房屋类型(户型)*/
+create table tb_house_type(
+	id int primary key auto_increment not null,
+	h_type varchar(20) not null
+)
+/*公告*/
+create table tb_notice(
+	id bigint primary key auto_increment not null,
+	n_empid int not null,
+	n_theme varchar(20) not null,
+	n_content varchar(50) not null,
+	n_time date not null,
+	n_end_time date not null
+)
+/*邮箱*/
+create table tb_email(
+	id bigint primary key auto_increment not null,
+	m_addressee_empid bigint not null,
+	m_addresser_empid bigint not null,
+	m_theme varchar(20) not null,
+	m_content varchar(200) not null,
+	m_time date not null,
+	m_status boolean not null
+)
+
+alter table tb_emp drop e_department;
+alter table tb_emp add e_departmentid int not null;
+alter table tb_custom modify c_qq varchar(13) not null;

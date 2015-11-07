@@ -1,0 +1,43 @@
+package com.tarena.crm.action;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+import com.alibaba.fastjson.JSONArray;
+import com.tarena.crm.dao.impl.CustomDaoImpl;
+import com.tarena.crm.entity.Custom;
+import com.tarena.minispringmvc.servlet.Action;
+import com.tarena.minispringmvc.servlet.RequestPath;
+
+@Action
+public class Allot {
+	@RequestPath(path = "/quoto.do")
+	public void allot(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		try {
+			List<Custom> custom = new ArrayList<Custom>();
+			CustomDaoImpl dao = new CustomDaoImpl();
+			custom = dao.findAll();
+			System.out.println(custom.get(0).getName());
+			Object json = JSONArray.toJSON(custom);
+			out.println(json.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
+
+
+/*
+ * 
+ * 
+ */

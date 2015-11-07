@@ -1,0 +1,114 @@
+package com.tarena.crm.entity;
+
+
+
+/**
+ * TbLinkman entity. @author MyEclipse Persistence Tools
+ */
+
+public class TbLinkman  implements java.io.Serializable {
+
+
+    // Fields    
+
+     private Long id;
+     private Long LCNameid;
+     private String LName;
+     private Long LGenderId;
+     private String LJob;
+     private String LMobilePhone;
+     private String LRelationship;
+
+
+    // Constructors
+
+    /** default constructor */
+    public TbLinkman() {
+    }
+
+	/** minimal constructor */
+    public TbLinkman(Long LCNameid, String LName, String LMobilePhone, String LRelationship) {
+        this.LCNameid = LCNameid;
+        this.LName = LName;
+        this.LMobilePhone = LMobilePhone;
+        this.LRelationship = LRelationship;
+    }
+    
+    /** full constructor */
+    public TbLinkman(Long LCNameid, String LName, Long LGenderId, String LJob, String LMobilePhone, String LRelationship) {
+        this.LCNameid = LCNameid;
+        this.LName = LName;
+        this.LGenderId = LGenderId;
+        this.LJob = LJob;
+        this.LMobilePhone = LMobilePhone;
+        this.LRelationship = LRelationship;
+    }
+
+   
+    // Property accessors
+
+    public Long getId() {
+        return this.id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getLCNameid() {
+        return this.LCNameid;
+    }
+    
+    public void setLCNameid(Long LCNameid) {
+        this.LCNameid = LCNameid;
+    }
+
+    public String getLName() {
+        return this.LName;
+    }
+    
+    public void setLName(String LName) {
+        this.LName = LName;
+    }
+
+    public Long getLGenderId() {
+        return this.LGenderId;
+    }
+    
+    public void setLGenderId(Long LGenderId) {
+        this.LGenderId = LGenderId;
+    }
+
+    public String getLJob() {
+        return this.LJob;
+    }
+    
+    public void setLJob(String LJob) {
+        this.LJob = LJob;
+    }
+
+    public String getLMobilePhone() {
+        return this.LMobilePhone;
+    }
+    
+    public void setLMobilePhone(String LMobilePhone) {
+        this.LMobilePhone = LMobilePhone;
+    }
+
+    public String getLRelationship() {
+        return this.LRelationship;
+    }
+    
+    public void setLRelationship(String LRelationship) {
+        this.LRelationship = LRelationship;
+    }
+   
+
+
+
+
+
+
+
+
+}

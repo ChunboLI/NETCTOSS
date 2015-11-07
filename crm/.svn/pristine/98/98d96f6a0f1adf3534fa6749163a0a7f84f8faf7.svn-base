@@ -1,0 +1,45 @@
+package com.tarena.crm.dao.impl;
+
+import java.util.List;
+
+import com.tarena.crm.entity.TbLinkman;
+
+public class LinkmanDaoImpl extends BaseDaoImpl<TbLinkman> {
+
+	@Override
+	public TbLinkman add(TbLinkman entity) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean delete(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modify(TbLinkman entity) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public TbLinkman findById(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TbLinkman findByName(String name) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<TbLinkman> findAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

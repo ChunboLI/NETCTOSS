@@ -1,0 +1,116 @@
+package com.tarena.crm.action;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.tarena.crm.dao.impl.CustomDaoImpl;
+import com.tarena.crm.entity.Custom;
+import com.tarena.minispringmvc.servlet.Action;
+import com.tarena.minispringmvc.servlet.RequestPath;
+
+
+@Action
+public class CustomerAction {
+	@RequestPath(path = "/custom/add.do")
+	public void add(HttpServletRequest request,
+			HttpServletResponse response) throws IOException, ServletException {
+		System.out.println("custom/add.do");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		String name = request.getParameter("name");
+		System.out.println(name);
+		Integer source =Integer.parseInt(request.getParameter("source"));
+		String job = request.getParameter("job");
+		Integer type = Integer.parseInt(request.getParameter("type"));
+		Integer gender = Integer.parseInt(request.getParameter("gender"));
+		String email = request.getParameter("email");
+		String birthday = request.getParameter("birthday");
+		String mobliephone = request.getParameter("mobliephone");
+		String qq = request.getParameter("qq");
+		String address = request.getParameter("address");
+		String weibo = request.getParameter("weibo");
+		String phone = request.getParameter("phone");
+		String msn = request.getParameter("msn");
+		String company = request.getParameter("company");
+		Long creator = Long.parseLong(request.getParameter("creator"));
+		Integer modifier = Integer.parseInt(request.getParameter("modifier"));
+		Integer status = Integer.parseInt(request.getParameter("status"));
+		String remarks = request.getParameter("remarks");
+		Date d = new Date();
+		
+		Custom c = new Custom();
+		c.setName(name);
+		c.setSource(source);
+		c.setJob(job);
+		c.setType(type);
+		c.setGender(gender);
+		c.setEmail(email);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
+		try {
+			c.setBirthday(sdf.parse(birthday));
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		c.setMobliePhone(mobliephone);
+		c.setQq(qq);
+		c.setAddress(address);
+		c.setWeibo(weibo);
+		c.setPhone(phone);
+		c.setMsn(msn);
+		c.setCompany(company);
+		c.setCreator(creator);
+		c.setModifier(modifier);
+		c.setStatus(status);
+		c.setRemarks(remarks);
+		c.setCreateDate(d);
+		c.setBelongTo(1L);
+		
+		CustomDaoImpl cdi = new CustomDaoImpl();
+		
+		Custom c1 = new Custom();
+		
+		try {
+			c1 = cdi.add(c);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		if(c1 != null){
+			out.println("添加成功");
+			
+		}else{
+			throw new ServletException("error");
+			
+		}
+		/*
+		'name':$('#name').val(),
+		'source':$('#s1 option :selected ').val(),
+		'job':$('#job').val(),
+		'type':$('#s2 option :selected').val(),
+		'gender':$(':radio :selected').val(),
+		'email':$('#email').val(),
+		'birthday':$('#birthday').val(),
+		'mobliephone':$('#mobliephone').val(),
+		'qq':$('#qq').val(),
+		'address':$('#address').val(),
+		'weibo':$('#weibo').val(),
+		'phone':$('#phone').val(),
+		'msn':$('#msn').val(),
+		'company':$('#company').val(),
+		'creator':$('#creator').val(),
+		'modifier':$('#modifier').val(),
+		'status':$('#s3 option :selected').val(),
+		'remarks':$('#remarks').val()
+		*/
+	}
+}

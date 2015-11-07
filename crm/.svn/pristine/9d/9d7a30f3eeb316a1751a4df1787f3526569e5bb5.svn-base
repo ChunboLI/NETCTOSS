@@ -1,0 +1,68 @@
+package com.tarena.crm.dao.impl;
+
+import java.sql.ResultSet;
+import java.util.Date;
+import java.util.List;
+
+import com.tarena.crm.dao.BaseDao;
+import com.tarena.crm.entity.Email;
+
+public class EmailDaoImpl extends com.tarena.db.BaseDao<Email> implements BaseDao<Email>{
+
+	@Override
+	public Email add(Email entity) throws Exception {
+		update("insert into Email (sender,receiver,theme,content,time,status)values(?,?,?,?,?,?)", entity.getSender(),entity.getReceiver(),entity.getTheme(),entity.getContent(),entity.getTime(),entity.getStatus());
+		return findById(getMaxId("Email"));
+	}
+
+	@Override
+	public boolean delete(long id) throws Exception {
+		update("delete from Email where id=?", id);
+		return true;
+	}
+
+	@Override
+	public boolean modify(Email entity) throws Exception {
+		update("update Email set sender=?,receiver=?,theme=?,content=?,time=?,status=?",entity.getSender(),entity.getReceiver(),entity.getTheme(),entity.getContent(),entity.getTime(),entity.getStatus());
+		return true;
+	}
+
+	@Override
+	public Email findById(long id) throws Exception {
+		return queryEntity("select * from Email where id=?",id).get(0);
+
+	}
+
+	@Override
+	public List<Email> findByName(String name) throws Exception {
+		return queryEntity("select * from Email where name=?",name);
+
+	}
+
+	@Override
+	public List<Email> findAll() throws Exception {
+		return queryEntity("select * from Email where 1=?",1);
+
+	}
+
+	@Override
+	public Email toEntity(ResultSet rs) throws Exception {
+		Email c = new Email();
+		long id = rs.getLong("id");
+		long sender = rs.getLong("sender");
+		long receiver = rs.getLong("receiver");
+		String theme = rs.getString("theme");
+		String content = rs.getString("content");
+		Date time = rs.getDate("time");
+		boolean status = rs.getBoolean("status");
+		c.setId(id);
+		c.setSender(sender);
+		c.setReceiver(receiver);
+		c.setTheme(theme);
+		c.setContent(content);
+		c.setTime(time);
+		c.setStatus(status);
+		return c;
+	}
+
+}

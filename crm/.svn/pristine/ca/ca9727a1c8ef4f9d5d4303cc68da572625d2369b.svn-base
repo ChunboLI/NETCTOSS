@@ -1,0 +1,62 @@
+package com.tarena.crm.dao.impl;
+
+import java.sql.ResultSet;
+import java.util.List;
+
+import com.tarena.crm.dao.BaseDao;
+import com.tarena.crm.entity.House;
+
+public class HouseDaoImpl extends com.tarena.db.BaseDao<House>implements BaseDao<House>{
+
+	@Override
+	public House add(House entity) throws Exception {
+		update("insert into House (emp,address,environment, price,type)values(?,?,?,?,?)",
+				entity.getEmp(),entity.getAddress(),entity.getEnvironment(),entity.getPrice(),entity.getPrice(),entity.getType());
+		return findById(getMaxId("House"));
+	}
+
+	@Override
+	public boolean modify(House entity) throws Exception {
+		 update("update House set emp=?,address=?,environment=?, price=?,type=?" +
+					"where id=?",entity.getEmp(),entity.getAddress(),entity.getEnvironment(),entity.getPrice(),entity.getPrice(),entity.getType(),entity.getId());
+		   return true;
+	}
+
+
+	@Override
+	public List<House> findByName(String name) throws Exception {
+		return null;
+	}
+	public List<House> findByType(int type) throws Exception {
+		return queryEntity("select * from House where type=?",type);
+	}
+
+	@Override
+	public List<House> findAll() throws Exception {
+		return queryEntity("select *from House ",null);
+	}
+
+	@Override
+	public boolean delete(long id) throws Exception {
+		update("delete from House where id=?",id);
+		return true;
+	}
+	
+	@Override
+	public House findById(long id) throws Exception {
+		return  queryEntity("select *from House where id=?",(int)id).get(0);
+	}
+
+	@Override
+	public House toEntity(ResultSet rs) throws Exception {
+		House house=new House();
+		house.setEmp(rs.getLong("emp"));
+		house.setId(rs.getInt("id"));
+		house.setAddress(rs.getString("address"));
+		house.setEnvironment(rs.getString("environment"));
+		house.setPrice(rs.getDouble("price"));
+		house.setType(rs.getInt("type"));
+		return house;
+	}
+
+}

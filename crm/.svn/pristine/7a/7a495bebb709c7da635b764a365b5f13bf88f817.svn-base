@@ -1,0 +1,263 @@
+package com.tarena.crm.entity;
+
+import java.util.Date;
+
+
+/**
+ * TbCustom entity. @author MyEclipse Persistence Tools
+ */
+
+public class TbCustom  implements java.io.Serializable {
+
+
+    // Fields    
+
+     private Long id;
+     private String CName;
+     private String CJob;
+     private Integer CGenderId;
+     private Date CBirthday;
+     private String CQq;
+     private String CWeibo;
+     private String CMsn;
+     private Long CCreateEmpid;
+     private Integer CStatusId;
+     private Integer CSourceId;
+     private Integer CTypeId;
+     private String CEmail;
+     private String CMobilePhone;
+     private String CPhone;
+     private String CAddress;
+     private String CCompany;
+     private Integer CModifyEmpid;
+     private String CRemarks;
+     private Date CCreateDate;
+     private Long CBelongEmpid;
+
+
+    // Constructors
+
+    /** default constructor */
+    public TbCustom() {
+    }
+
+	/** minimal constructor */
+    public TbCustom(String CName, String CJob, Integer CGenderId, String CQq, Long CCreateEmpid, Integer CStatusId, Integer CSourceId, Integer CTypeId, String CEmail, String CMobilePhone, String CCompany, Date CCreateDate) {
+        this.CName = CName;
+        this.CJob = CJob;
+        this.CGenderId = CGenderId;
+        this.CQq = CQq;
+        this.CCreateEmpid = CCreateEmpid;
+        this.CStatusId = CStatusId;
+        this.CSourceId = CSourceId;
+        this.CTypeId = CTypeId;
+        this.CEmail = CEmail;
+        this.CMobilePhone = CMobilePhone;
+        this.CCompany = CCompany;
+        this.CCreateDate = CCreateDate;
+    }
+    
+    /** full constructor */
+    public TbCustom(String CName, String CJob, Integer CGenderId, Date CBirthday, String CQq, String CWeibo, String CMsn, Long CCreateEmpid, Integer CStatusId, Integer CSourceId, Integer CTypeId, String CEmail, String CMobilePhone, String CPhone, String CAddress, String CCompany, Integer CModifyEmpid, String CRemarks, Date CCreateDate, Long CBelongEmpid) {
+        this.CName = CName;
+        this.CJob = CJob;
+        this.CGenderId = CGenderId;
+        this.CBirthday = CBirthday;
+        this.CQq = CQq;
+        this.CWeibo = CWeibo;
+        this.CMsn = CMsn;
+        this.CCreateEmpid = CCreateEmpid;
+        this.CStatusId = CStatusId;
+        this.CSourceId = CSourceId;
+        this.CTypeId = CTypeId;
+        this.CEmail = CEmail;
+        this.CMobilePhone = CMobilePhone;
+        this.CPhone = CPhone;
+        this.CAddress = CAddress;
+        this.CCompany = CCompany;
+        this.CModifyEmpid = CModifyEmpid;
+        this.CRemarks = CRemarks;
+        this.CCreateDate = CCreateDate;
+        this.CBelongEmpid = CBelongEmpid;
+    }
+
+   
+    // Property accessors
+
+    public Long getId() {
+        return this.id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCName() {
+        return this.CName;
+    }
+    
+    public void setCName(String CName) {
+        this.CName = CName;
+    }
+
+    public String getCJob() {
+        return this.CJob;
+    }
+    
+    public void setCJob(String CJob) {
+        this.CJob = CJob;
+    }
+
+    public Integer getCGenderId() {
+        return this.CGenderId;
+    }
+    
+    public void setCGenderId(Integer CGenderId) {
+        this.CGenderId = CGenderId;
+    }
+
+    public Date getCBirthday() {
+        return this.CBirthday;
+    }
+    
+    public void setCBirthday(Date CBirthday) {
+        this.CBirthday = CBirthday;
+    }
+
+    public String getCQq() {
+        return this.CQq;
+    }
+    
+    public void setCQq(String CQq) {
+        this.CQq = CQq;
+    }
+
+    public String getCWeibo() {
+        return this.CWeibo;
+    }
+    
+    public void setCWeibo(String CWeibo) {
+        this.CWeibo = CWeibo;
+    }
+
+    public String getCMsn() {
+        return this.CMsn;
+    }
+    
+    public void setCMsn(String CMsn) {
+        this.CMsn = CMsn;
+    }
+
+    public Long getCCreateEmpid() {
+        return this.CCreateEmpid;
+    }
+    
+    public void setCCreateEmpid(Long CCreateEmpid) {
+        this.CCreateEmpid = CCreateEmpid;
+    }
+
+    public Integer getCStatusId() {
+        return this.CStatusId;
+    }
+    
+    public void setCStatusId(Integer CStatusId) {
+        this.CStatusId = CStatusId;
+    }
+
+    public Integer getCSourceId() {
+        return this.CSourceId;
+    }
+    
+    public void setCSourceId(Integer CSourceId) {
+        this.CSourceId = CSourceId;
+    }
+
+    public Integer getCTypeId() {
+        return this.CTypeId;
+    }
+    
+    public void setCTypeId(Integer CTypeId) {
+        this.CTypeId = CTypeId;
+    }
+
+    public String getCEmail() {
+        return this.CEmail;
+    }
+    
+    public void setCEmail(String CEmail) {
+        this.CEmail = CEmail;
+    }
+
+    public String getCMobilePhone() {
+        return this.CMobilePhone;
+    }
+    
+    public void setCMobilePhone(String CMobilePhone) {
+        this.CMobilePhone = CMobilePhone;
+    }
+
+    public String getCPhone() {
+        return this.CPhone;
+    }
+    
+    public void setCPhone(String CPhone) {
+        this.CPhone = CPhone;
+    }
+
+    public String getCAddress() {
+        return this.CAddress;
+    }
+    
+    public void setCAddress(String CAddress) {
+        this.CAddress = CAddress;
+    }
+
+    public String getCCompany() {
+        return this.CCompany;
+    }
+    
+    public void setCCompany(String CCompany) {
+        this.CCompany = CCompany;
+    }
+
+    public Integer getCModifyEmpid() {
+        return this.CModifyEmpid;
+    }
+    
+    public void setCModifyEmpid(Integer CModifyEmpid) {
+        this.CModifyEmpid = CModifyEmpid;
+    }
+
+    public String getCRemarks() {
+        return this.CRemarks;
+    }
+    
+    public void setCRemarks(String CRemarks) {
+        this.CRemarks = CRemarks;
+    }
+
+    public Date getCCreateDate() {
+        return this.CCreateDate;
+    }
+    
+    public void setCCreateDate(Date CCreateDate) {
+        this.CCreateDate = CCreateDate;
+    }
+
+    public Long getCBelongEmpid() {
+        return this.CBelongEmpid;
+    }
+    
+    public void setCBelongEmpid(Long CBelongEmpid) {
+        this.CBelongEmpid = CBelongEmpid;
+    }
+   
+
+
+
+
+
+
+
+
+}

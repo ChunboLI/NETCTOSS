@@ -1,0 +1,57 @@
+package com.tarena.crm.entity;
+
+
+
+/**
+ * TbHouseType entity. @author MyEclipse Persistence Tools
+ */
+
+public class TbHouseType  implements java.io.Serializable {
+
+
+    // Fields    
+
+     private Integer id;
+     private String HType;
+
+
+    // Constructors
+
+    /** default constructor */
+    public TbHouseType() {
+    }
+
+    
+    /** full constructor */
+    public TbHouseType(String HType) {
+        this.HType = HType;
+    }
+
+   
+    // Property accessors
+
+    public Integer getId() {
+        return this.id;
+    }
+    
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getHType() {
+        return this.HType;
+    }
+    
+    public void setHType(String HType) {
+        this.HType = HType;
+    }
+   
+
+
+
+
+
+
+
+
+}

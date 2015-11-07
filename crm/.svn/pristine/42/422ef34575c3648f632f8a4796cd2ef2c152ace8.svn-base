@@ -1,0 +1,45 @@
+package com.tarena.crm.dao.impl;
+
+import java.util.List;
+
+import com.tarena.crm.entity.TbCustomSource;
+
+public class CustomSourceDaoImpl<T> extends BaseDaoImpl<TbCustomSource> {
+
+	@Override
+	public TbCustomSource add(TbCustomSource entity) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean delete(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modify(TbCustomSource entity) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public TbCustomSource findById(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TbCustomSource findByName(String name) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<TbCustomSource> findAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

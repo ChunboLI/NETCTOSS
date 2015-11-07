@@ -1,0 +1,98 @@
+package com.tarena.crm.entity;
+
+import java.util.Date;
+
+
+/**
+ * TbNotice entity. @author MyEclipse Persistence Tools
+ */
+
+public class TbNotice  implements java.io.Serializable {
+
+
+    // Fields    
+
+     private Long id;
+     private Integer NEmpid;
+     private String NTheme;
+     private String NContent;
+     private Date NTime;
+     private Date NEndTime;
+
+
+    // Constructors
+
+    /** default constructor */
+    public TbNotice() {
+    }
+
+    
+    /** full constructor */
+    public TbNotice(Integer NEmpid, String NTheme, String NContent, Date NTime, Date NEndTime) {
+        this.NEmpid = NEmpid;
+        this.NTheme = NTheme;
+        this.NContent = NContent;
+        this.NTime = NTime;
+        this.NEndTime = NEndTime;
+    }
+
+   
+    // Property accessors
+
+    public Long getId() {
+        return this.id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getNEmpid() {
+        return this.NEmpid;
+    }
+    
+    public void setNEmpid(Integer NEmpid) {
+        this.NEmpid = NEmpid;
+    }
+
+    public String getNTheme() {
+        return this.NTheme;
+    }
+    
+    public void setNTheme(String NTheme) {
+        this.NTheme = NTheme;
+    }
+
+    public String getNContent() {
+        return this.NContent;
+    }
+    
+    public void setNContent(String NContent) {
+        this.NContent = NContent;
+    }
+
+    public Date getNTime() {
+        return this.NTime;
+    }
+    
+    public void setNTime(Date NTime) {
+        this.NTime = NTime;
+    }
+
+    public Date getNEndTime() {
+        return this.NEndTime;
+    }
+    
+    public void setNEndTime(Date NEndTime) {
+        this.NEndTime = NEndTime;
+    }
+   
+
+
+
+
+
+
+
+
+}

@@ -1,0 +1,47 @@
+package com.tarena.crm.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.tarena.crm.dao.impl.HouseDaoImpl;
+import com.tarena.crm.entity.House;
+import com.tarena.crm.service.HouseService;
+
+public class HouseServiceImpl implements HouseService{
+	HouseDaoImpl housedao = new HouseDaoImpl();
+	
+	@Override
+	public List<House> findAll() throws Exception {
+		List<House> lists = new ArrayList<House>();
+		lists = housedao.findAll();
+		return lists;
+	}
+
+	@Override
+	public List<House> findByType(House entity) throws Exception {
+		List<House> lists = new ArrayList<House>();
+		lists = housedao.findByType(entity.getType());
+		return lists;
+	}
+
+	@Override
+	public House add(House entity) throws Exception {
+		House house = housedao.add(entity);
+		return house;
+	}
+
+	@Override
+	public boolean modify(House entity) throws Exception {
+		boolean flag = false;
+		flag = housedao.modify(entity);
+		return flag;
+	}
+
+	@Override
+	public boolean delete(House entity) throws Exception {
+		boolean flag = false;
+		flag = housedao.delete(entity.getId());
+		return flag;
+	}
+
+}

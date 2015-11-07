@@ -1,0 +1,41 @@
+package com.tarena.crm.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.tarena.crm.dao.impl.EmpDaoImpl;
+import com.tarena.crm.entity.Emp;
+import com.tarena.crm.service.EmpService;
+
+public class EmpServiceImpl implements EmpService{
+		EmpDaoImpl empdao = new EmpDaoImpl();
+		
+	@Override
+	public List<Emp> findAll() throws Exception {
+		List<Emp> lists = new ArrayList<Emp>();
+		lists = empdao.findAll();
+		return lists;
+	}
+
+	@Override
+	public List<Emp> findByName(Emp entity) throws Exception {
+		List<Emp> lists = new ArrayList<Emp>();
+		lists = empdao.findByName(entity.getName());
+		return lists;
+	}
+
+	@Override
+	public boolean delete(Emp entity) throws Exception {
+		boolean flag = false;
+		flag = empdao.delete(entity.getId());
+		return flag;
+	}
+
+	@Override
+	public boolean modify(Emp entity) throws Exception {
+		boolean flag = false;
+		flag = empdao.modify(entity);
+		return flag;
+	}
+
+}

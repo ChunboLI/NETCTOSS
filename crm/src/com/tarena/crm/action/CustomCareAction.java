@@ -1,0 +1,187 @@
+package com.tarena.crm.action;
+
+import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.tarena.crm.dao.impl.CustomCareDaoImpl;
+import com.tarena.crm.dao.impl.CustomCareInfoDaoImpl;
+import com.tarena.crm.entity.Customcare;
+import com.tarena.minispringmvc.servlet.Action;
+import com.tarena.minispringmvc.servlet.RequestPath;
+
+@Action
+public class CustomCareAction {
+	
+	@RequestPath(path = "/care/findAll.do")
+	public void findAllCare (HttpServletRequest request, 
+			HttpServletResponse response)throws Exception{
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();
+		CustomCareInfoDaoImpl ccid = new	CustomCareInfoDaoImpl();
+		try{
+			Object json =  JSONArray.toJSON(ccid.findAll());
+			out.println(json);
+		}catch(Exception e){
+			out.println("fail");
+		}finally{
+			out.close();
+		}
+		
+	}
+	
+	@RequestPath(path = "/care/findOne.do")
+	public void findOne(HttpServletRequest request, 
+			HttpServletResponse response)throws Exception{
+		
+		response.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();
+		CustomCareInfoDaoImpl ccid = new	CustomCareInfoDaoImpl();
+		Long id = Long.parseLong(request.getParameter("id"));
+		try{
+			Object json =  JSON.toJSON(ccid.findById(id));
+			System.out.println(json);
+			out.println(json);
+		}catch(Exception e){
+			out.println("fail");
+		}finally{
+			out.close();
+		}
+	}
+	
+	
+	
+	@RequestPath(path="/care/add.do")
+	public void addCare(HttpServletRequest request, 
+			HttpServletResponse response)throws Exception{
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();
+		
+		String theme = request.getParameter("theme");
+		Integer custom = Integer.parseInt(request.getParameter("custom"));
+		String nextTime = request.getParameter("nextTime");
+		String way = request.getParameter("way");
+		Integer emp = Integer.parseInt(request.getParameter("emp"));
+		String remarks = request.getParameter("remarks");
+		
+		Date d = new Date();
+		
+		Customcare cc = new Customcare();
+		
+		cc.setCreateDate(d);
+		cc.setCustom(custom);
+		cc.setEmp(emp);
+		cc.setRemarks(remarks);
+		cc.setTheme(theme);
+		cc.setTime(d);
+		cc.setWay(way);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			cc.setNextTime(sdf.parse(nextTime));
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		
+		CustomCareDaoImpl ccd = new CustomCareDaoImpl();	
+		
+		Customcare cc1 = ccd.add(cc);
+		
+		if(cc1 != null){
+			out.println("添加成功");
+			
+		}else{
+			throw new ServletException("error");
+			
+		}
+		
+	}
+	
+	@RequestPath(path = "/care/update.do")
+	public void updateCare(HttpServletRequest request, 
+			HttpServletResponse response)throws Exception{
+		System.out.println("custom/update.do");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		Long id = Long.parseLong(request.getParameter("id"));
+		String theme = request.getParameter("theme");
+		Integer custom = Integer.parseInt(request.getParameter("custom"));
+		String time = request.getParameter("time");
+		System.out.println(time);
+		String nextTime =request.getParameter("nextTime");
+		System.out.println(nextTime);
+		String way = request.getParameter("way");
+		Integer emp = Integer.parseInt(request.getParameter("emp"));
+		String remarks = request.getParameter("remarks");
+		
+		Customcare cc = new Customcare();
+		cc.setCustom(custom);
+		cc.setEmp(emp);
+		cc.setId(id);
+		cc.setRemarks(remarks);
+		cc.setTheme(theme);
+		cc.setWay(way);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			cc.setNextTime(sdf.parse(nextTime));
+			cc.setTime(sdf.parse(time));
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		
+		CustomCareDaoImpl ccd = new CustomCareDaoImpl();
+		
+		boolean flag = ccd.modify(cc);
+		
+		if(flag){
+			out.println("修改成功");
+			
+		}else{
+			throw new ServletException("error");
+			
+		}
+		
+	}
+	
+	
+	
+	@RequestPath(path = "/care/see.do")
+	public void seeOne(HttpServletRequest request, 
+			HttpServletResponse response)throws Exception{
+		HttpSession session = request.getSession();
+		Long id = Long.parseLong(request.getParameter("id"));
+		CustomCareDaoImpl ccd = new	CustomCareDaoImpl();
+		Customcare cc = new Customcare();
+		
+		cc = ccd.findById(id);
+		System.out.println(cc);
+		session.setAttribute("care", cc);
+		
+	}
+	
+	
+	
+	@RequestPath(path = "/care/delete.do")
+	public void deleteOne(HttpServletRequest request, 
+			HttpServletResponse response)throws Exception{
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();
+		Long id = Long.parseLong(request.getParameter("id"));
+		CustomCareDaoImpl ccd = new CustomCareDaoImpl();	
+		
+		if(ccd.delete(id)){
+			out.println("删除成功！");
+		}
+		
+	}
+}

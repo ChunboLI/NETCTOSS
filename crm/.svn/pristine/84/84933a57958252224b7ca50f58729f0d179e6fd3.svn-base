@@ -1,0 +1,108 @@
+package com.tarena.crm.entity;
+
+import java.util.Date;
+
+
+/**
+ * TbEmail entity. @author MyEclipse Persistence Tools
+ */
+
+public class TbEmail  implements java.io.Serializable {
+
+
+    // Fields    
+
+     private Long id;
+     private Long MAddresseeEmpid;
+     private Long MAddresserEmpid;
+     private String MTheme;
+     private String MContent;
+     private Date MTime;
+     private Boolean MStatus;
+
+
+    // Constructors
+
+    /** default constructor */
+    public TbEmail() {
+    }
+
+    
+    /** full constructor */
+    public TbEmail(Long MAddresseeEmpid, Long MAddresserEmpid, String MTheme, String MContent, Date MTime, Boolean MStatus) {
+        this.MAddresseeEmpid = MAddresseeEmpid;
+        this.MAddresserEmpid = MAddresserEmpid;
+        this.MTheme = MTheme;
+        this.MContent = MContent;
+        this.MTime = MTime;
+        this.MStatus = MStatus;
+    }
+
+   
+    // Property accessors
+
+    public Long getId() {
+        return this.id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getMAddresseeEmpid() {
+        return this.MAddresseeEmpid;
+    }
+    
+    public void setMAddresseeEmpid(Long MAddresseeEmpid) {
+        this.MAddresseeEmpid = MAddresseeEmpid;
+    }
+
+    public Long getMAddresserEmpid() {
+        return this.MAddresserEmpid;
+    }
+    
+    public void setMAddresserEmpid(Long MAddresserEmpid) {
+        this.MAddresserEmpid = MAddresserEmpid;
+    }
+
+    public String getMTheme() {
+        return this.MTheme;
+    }
+    
+    public void setMTheme(String MTheme) {
+        this.MTheme = MTheme;
+    }
+
+    public String getMContent() {
+        return this.MContent;
+    }
+    
+    public void setMContent(String MContent) {
+        this.MContent = MContent;
+    }
+
+    public Date getMTime() {
+        return this.MTime;
+    }
+    
+    public void setMTime(Date MTime) {
+        this.MTime = MTime;
+    }
+
+    public Boolean getMStatus() {
+        return this.MStatus;
+    }
+    
+    public void setMStatus(Boolean MStatus) {
+        this.MStatus = MStatus;
+    }
+   
+
+
+
+
+
+
+
+
+}

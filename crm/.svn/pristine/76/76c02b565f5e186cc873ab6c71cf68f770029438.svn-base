@@ -1,0 +1,57 @@
+package com.tarena.crm.entity;
+
+
+
+/**
+ * TbCustomSource entity. @author MyEclipse Persistence Tools
+ */
+
+public class TbCustomSource  implements java.io.Serializable {
+
+
+    // Fields    
+
+     private Long id;
+     private String CSource;
+
+
+    // Constructors
+
+    /** default constructor */
+    public TbCustomSource() {
+    }
+
+    
+    /** full constructor */
+    public TbCustomSource(String CSource) {
+        this.CSource = CSource;
+    }
+
+   
+    // Property accessors
+
+    public Long getId() {
+        return this.id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCSource() {
+        return this.CSource;
+    }
+    
+    public void setCSource(String CSource) {
+        this.CSource = CSource;
+    }
+   
+
+
+
+
+
+
+
+
+}

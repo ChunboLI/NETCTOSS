@@ -1,0 +1,246 @@
+package com.tarena.crm.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.sql.Date;
+import java.util.List;
+import com.tarena.crm.entity.Customcare;
+import com.tarena.db.DBUtils;
+
+
+
+
+
+public class CustomCareDaoImpl extends BaseDaoImpl<Customcare>{
+
+	@Override
+	public Customcare add(Customcare entity) throws Exception {
+		Connection conn =null;
+		PreparedStatement prep = null;
+		try {
+			conn = DBUtils.getConnection();
+			prep = conn.prepareStatement("insert into CustomCare (custom,theme,way,time,nextTime,remarks,emp,createDate)values(?,?,?,?,?,?,?,?)");
+			prep.setInt(1, entity.getCustom());
+			prep.setString(2, entity.getTheme());
+			prep.setString(3, entity.getWay());
+			prep.setTimestamp(4, new Timestamp(entity.getTime().getTime()));
+			prep.setTimestamp(5, new Timestamp(entity.getNextTime().getTime()));
+			prep.setString(6, entity.getRemarks());
+			prep.setInt(7, entity.getEmp());
+			prep.setTimestamp(8, new Timestamp(entity.getCreateDate().getTime()));
+			prep.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally{
+			DBUtils.closeConnection(conn);
+			
+		}
+		return entity;
+	}
+
+	@Override
+	public boolean delete(long id) throws Exception {
+		Connection conn =null;
+		PreparedStatement prep = null;
+		try {
+			conn = DBUtils.getConnection();
+			prep = conn.prepareStatement("delete from CustomCare where id=?");
+			prep.setLong(1, id);
+			prep.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally{
+			DBUtils.closeConnection(conn);
+			
+		}
+		return true;
+	}
+
+	@Override
+	public boolean modify(Customcare entity) throws Exception {
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DBUtils.getConnection();
+			prep = conn.prepareStatement("update CustomCare set custom=?,theme=?,way=?,time=?,nextTime=?,remarks=?,emp=? where id=?");
+			prep.setInt(1, entity.getCustom());
+			prep.setString(2, entity.getTheme());
+			prep.setString(3, entity.getWay());
+			prep.setTimestamp(4,  new Timestamp(entity.getTime().getTime()));
+			prep.setTimestamp(5,  new Timestamp(entity.getNextTime().getTime()));
+			prep.setString(6, entity.getRemarks());
+			prep.setInt(7, entity.getEmp());
+			prep.setLong(8, entity.getId());
+			prep.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally{
+			DBUtils.closeConnection(conn);
+			
+		}
+		return true;
+	}
+
+	@Override
+	public Customcare findById(long id) throws Exception {
+		Customcare c = new Customcare();
+		Connection conn = null;
+		PreparedStatement prep = null;
+		ResultSet rs = null;
+		try {
+			conn = DBUtils.getConnection();
+			prep = conn.prepareStatement("select * from CustomCare where id =?");
+			prep.setLong(1, id);
+			rs = prep.executeQuery();
+			while(rs.next()){
+				int custom = rs.getInt("custom");
+				String theme = rs.getString("theme");
+				String way = rs.getString("way");
+				Date time = new Date(rs.getTimestamp("time").getTime());
+				Date nextTime = new Date(rs.getTimestamp("nextTime").getTime());
+				String remarks = rs.getString("remarks");
+				int emp = rs.getInt("emp");
+				Date createDate = new Date(rs.getTimestamp("createDate").getTime());
+				c.setId((long)id);
+				c.setCustom(custom);
+				c.setTheme(theme);
+				c.setWay(way);
+				c.setTime(time);
+				c.setNextTime(nextTime);
+				c.setRemarks(remarks);
+				c.setEmp(emp);
+				c.setCreateDate(createDate);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally{
+			DBUtils.closeConnection(conn);
+			
+		}
+		return c;
+	}
+
+	@Override
+	public List<Customcare> findByName(String name) throws Exception {
+		List<Customcare> list = new ArrayList<Customcare>();
+		Customcare c = new Customcare();
+		Connection conn = null;
+		PreparedStatement prep = null;
+		ResultSet rs = null;
+		try {
+			conn = DBUtils.getConnection();
+			prep = conn.prepareStatement("select * from CustomCare where custom = (select id from Custom where name=?)");
+			prep.setString(1, name);
+			rs = prep.executeQuery();
+			while(rs.next()){
+				long id = rs.getLong("id");
+				int custom = rs.getInt("custom");
+				String theme = rs.getString("theme");
+				String way = rs.getString("way");
+				Date time = new Date(rs.getTimestamp("time").getTime());
+				Date nextTime = new Date(rs.getTimestamp("nextTime").getTime());
+				String remarks = rs.getString("remarks");
+				int emp = rs.getInt("emp");
+				Date createDate = new Date(rs.getTimestamp("createDate").getTime());
+				c.setId((long)id);
+				c.setCustom(custom);
+				c.setTheme(theme);
+				c.setWay(way);
+				c.setTime(time);
+				c.setNextTime(nextTime);
+				c.setRemarks(remarks);
+				c.setEmp(emp);
+				c.setCreateDate(createDate);
+				list.add(c);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally{
+			DBUtils.closeConnection(conn);
+			
+		}
+		return list;
+	}
+
+	@Override
+	public List<Customcare> findAll() throws Exception {
+		List<Customcare> customcare = new ArrayList<Customcare>();
+		Connection conn = null;
+		PreparedStatement prep = null;
+		ResultSet rs = null;
+		try {
+			conn = DBUtils.getConnection();
+			prep = conn.prepareStatement("select * from CustomCare");
+			rs = prep.executeQuery();
+			while(rs.next()){
+				long id = rs.getLong("id");
+				int custom = rs.getInt("custom");
+				String theme = rs.getString("theme");
+				String way = rs.getString("way");
+				Date time = new Date(rs.getTimestamp("time").getTime());
+				Date nextTime = new Date(rs.getTimestamp("nextTime").getTime());
+				String remarks = rs.getString("remarks");
+				int emp = rs.getInt("emp");
+				Date createDate = new Date(rs.getTimestamp("createDate").getTime());
+				Customcare c = new Customcare();
+				c.setId(id);
+				c.setCustom(custom);
+				c.setTheme(theme);
+				c.setWay(way);
+				c.setTime(time);
+				c.setNextTime(nextTime);
+				c.setRemarks(remarks);
+				c.setEmp(emp);
+				c.setCreateDate(createDate);
+				customcare.add(c);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally{
+			DBUtils.closeConnection(conn);
+			
+		}
+		return customcare;
+	}
+/*
+	public static void main(String[] args) {
+		CustomCareDaoImpl c = new CustomCareDaoImpl();
+		try {
+			Customcare cs = new Customcare();
+			cs.setCreateDate(new java.util.Date());
+			cs.setCustom(1);
+			cs.setEmp(2);
+			cs.setId((long)1);
+			cs.setNextTime(new java.util.Date());
+			cs.setRemarks("1");
+			cs.setTheme("2");
+			
+			cs.setTime(new java.util.Date());
+			cs.setWay("1");
+			c.add(cs);
+			for(Customcare cc : c.findAll()){
+				System.out.println(cc.getNextTime());
+			}
+			System.out.println(c.findById(1));
+			System.out.println(c.delete(1));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	*/
+}

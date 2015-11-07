@@ -1,0 +1,12 @@
+package com.tarena.crm.dao;
+
+import java.util.List;
+
+public interface BaseDao<T> {
+	public T add(T entity) throws Exception;
+	public boolean delete(int id) throws Exception;
+	public boolean modify(T entity) throws Exception;
+	public T findById(int id) throws Exception;
+	public T findByName(String name) throws Exception;
+	public List<T> findAll() throws Exception;
+}

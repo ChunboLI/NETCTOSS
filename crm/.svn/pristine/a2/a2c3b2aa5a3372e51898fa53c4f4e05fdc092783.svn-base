@@ -1,0 +1,71 @@
+package com.tarena.crm.dao.impl;
+
+import java.sql.ResultSet;
+import java.util.List;
+
+import org.apache.commons.lang3.ArrayUtils;
+
+import com.tarena.crm.entity.User;
+import com.tarena.db.BaseDao;
+import com.tarena.db.EntityUtils;
+
+public class UserDaoImpl extends BaseDaoImpl<User>{
+
+//	@Override
+//	public User toEntity(ResultSet rs) throws Exception {
+//		User user = new User();
+//		EntityUtils.fillEntity(rs, user);
+//		return user;
+//	}
+
+	@Override
+	public List<User> findAll() throws Exception {
+		//return queryEntity("select * from tb_user", null);
+		return null;
+	}
+
+	@Override
+	public User findById(int id) throws Exception {
+		
+		
+//		List<User> list = queryEntity("select * from tb_user where id = ?",
+//				new Object[] { id });
+//		if (list.size() > 0) {
+//			return list.get(0);
+//		}
+		return null;
+	}
+
+	@Override
+	public User add(User user) throws Exception {
+//		update("insert into tb_user values(null,?,?,?,?)", user.toArray());
+		return null;
+	}
+
+	@Override
+	public boolean modify(User user) throws Exception {
+//		Object[] params = user.toArray();
+//		params = ArrayUtils.add(params, user.getId());
+//		update(
+//				"update tb_user set username = ?, password = ?, name = ?, birthday = ? where id = ?",
+//				params);
+		return false;
+	}
+
+	@Override
+	public User findByName(String username) throws Exception {
+//		List<User> list = queryEntity("select * from tb_user where username = ?",
+//				new Object[] { username });
+//		if (list.size() > 0) {
+//			return list.get(0);
+//		}
+		return null;
+	}
+
+	@Override
+	public boolean delete(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

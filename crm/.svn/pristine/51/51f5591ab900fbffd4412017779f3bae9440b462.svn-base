@@ -1,0 +1,170 @@
+package com.tarena.crm.service.impl;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.tarena.crm.dao.impl.BaseDaoImpl;
+import com.tarena.crm.dao.impl.EmailDaoImpl;
+import com.tarena.crm.dao.impl.EmpDaoImpl;
+import com.tarena.crm.entity.Email;
+import com.tarena.crm.entity.Emp;
+import com.tarena.crm.service.EmailService;
+
+public class EmailServiceImpl implements EmailService{
+	/**
+	 * 发送邮件
+	 */
+	@Override
+	public Email sendEmail(Email email) throws Exception {
+		boolean status = true;//发送状态 true表示发送成功
+		Date time = new Date();//邮件发送时间
+		email.setStatus(status);
+		email.setTime(time);
+		EmailDaoImpl edi = new EmailDaoImpl();
+		edi.add(email);
+		return email;
+	}
+	/**
+	 * 存草稿
+	 */
+	@Override
+	public Email keepEmail(Email email) throws Exception {
+		boolean status = false;//发送状态 false表示存入草稿箱
+		Date time = new Date();//邮件发送时间
+		email.setStatus(status);
+		email.setTime(time);
+		EmailDaoImpl edi = new EmailDaoImpl();
+		edi.add(email);
+		return email;
+	}
+	/**
+	 * 草稿箱发送
+	 * @throws Exception 
+	 */
+	@Override
+	public boolean sendDraft(long emailId) throws Exception{
+		boolean status = true;
+		EmailDaoImpl edi = new EmailDaoImpl();
+		edi.modifyById(status, emailId);
+		return true;
+	}
+
+	/**
+	 * 收件箱 通过收件人是自己来查找
+	 */
+	@Override
+	public List<Email> inbox(long receiver,boolean isSend) throws Exception {
+		EmailDaoImpl edi = new EmailDaoImpl();
+		//通过收件人查找 (要写findByReceiver)方法
+		List<Email> list = edi.findByReceiver(receiver,isSend);
+		return list;
+	}
+
+	/**
+	 * 发件箱 通过发件人是自己来查找
+	 */
+	@Override
+	public List<Email> outbox(long sender,boolean isSend) throws Exception {
+		EmailDaoImpl edi = new EmailDaoImpl();
+		//通过发件人查找 (要写findBySender)方法
+		List<Email> list = edi.findBySender(sender,isSend);
+		return list;
+	}
+	/**
+	 * 草稿箱
+	 */
+	@Override
+	public List<Email> draftBox(long sender, boolean isSend) throws Exception {
+		EmailDaoImpl edi = new EmailDaoImpl();
+		//草稿箱和发件箱类似
+		List<Email> list = edi.findBySender(sender,isSend);//草稿
+		return list;
+	}
+	/**
+	 * 删除草稿箱中的邮件
+	 */
+	@Override
+	public boolean deleteEmail(long id) throws Exception {
+		EmailDaoImpl edi = new EmailDaoImpl();
+		edi.delete(id);
+		return true;
+	}
+	/**
+	 * 通过输入的名字查找到员工的id
+	 * @param name
+	 * @return
+	 * @throws Exception
+	 */
+	public long findIdByName(String name) throws Exception{
+		EmpDaoImpl empdi = new EmpDaoImpl();
+		List<Emp> list = empdi.findByName(name);
+		return list.get(0).getId();
+	}
+	
+	
+	
+	/**
+	 * 收件箱搜索-通过发件人
+	 */
+	@Override
+	public List<Email> inboxBySender(String sender, long receiver,boolean isSend) throws Exception {
+		long senderId = findIdByName(sender);
+		EmailDaoImpl edi = new EmailDaoImpl();
+		List<Email> list = edi.findBySender(senderId,receiver,isSend);
+		return list;
+	}
+	/**
+	 * 收件箱搜索-通过主题
+	 */
+	@Override
+	public List<Email> inboxByTheme(String theme, long receiver, boolean isSend)
+			throws Exception {
+		EmailDaoImpl edi = new EmailDaoImpl();
+		List<Email> list = edi.findIn(receiver,isSend,"theme",theme);
+		return list;
+	}
+	/**
+	 * 收件箱搜索-通过内容
+	 */
+	@Override
+	public List<Email> inboxByContent(String content, long receiver,boolean isSend)
+			throws Exception {
+		EmailDaoImpl edi = new EmailDaoImpl();
+		List<Email> list = edi.findIn(receiver,isSend,"content",content);
+		return list;
+	}
+	
+	/**
+	 * 发件箱搜索-通过收件人
+	 */
+	@Override
+	public List<Email> outboxByReceiver(String receiver, long sender,boolean isSend)
+			throws Exception {
+		long receiverId = findIdByName(receiver);
+		EmailDaoImpl edi = new EmailDaoImpl();
+		List<Email> list = edi.findByReceiver(receiverId,sender,isSend);
+		return list;
+	}
+	/**
+	 * 发件箱搜索-通过主题
+	 */
+	@Override
+	public List<Email> outboxTheme(String theme, long sender,boolean isSend) throws Exception {
+		EmailDaoImpl edi = new EmailDaoImpl();
+		List<Email> list = edi.findOut(sender,isSend,"theme",theme);
+		return list;
+	}
+	/**
+	 * 发件箱搜索-通过内容
+	 */
+	@Override
+	public List<Email> outboxContent(String content, long sender,boolean isSend)
+			throws Exception {
+		EmailDaoImpl edi = new EmailDaoImpl();
+		List<Email> list = edi.findOut(sender,isSend,"content",content);
+		return list;
+	}
+	
+
+}

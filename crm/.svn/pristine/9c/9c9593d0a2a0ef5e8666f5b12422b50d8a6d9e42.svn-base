@@ -1,0 +1,240 @@
+package com.tarena.crm.dao.impl;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.tarena.crm.entity.Emp;
+import com.tarena.crm.entity.User;
+import com.tarena.db.DBUtils;
+
+public class EmpDaoImpl extends BaseDaoImpl<Emp> {
+
+	@Override
+	public Emp add(Emp emp) throws Exception {
+		Connection conn=null;
+		PreparedStatement ps=null;
+		try {
+			conn=DBUtils.getConnection();
+			ps=conn.prepareStatement("insert into emp(account,address,createDate" +
+					",department,education,email,emp,gender,idCard,interest" +
+					",marriage,mobilePhone,modifyier,name,nation,password" +
+					",payCard,phone,role)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			ps.setString(1,emp.getAccount());
+			ps.setString(2, emp.getAddress());
+			ps.setDate(3, new java.sql.Date(emp.getCreateDate().getTime()));
+			ps.setInt(4, emp.getDepartment());
+			ps.setString(5, emp.getEducation());
+			ps.setString(6, emp.getEmail());
+			ps.setLong(7, emp.getEmp());
+			ps.setInt(8, emp.getGender());
+			ps.setString(9, emp.getIdCard());
+			ps.setString(10, emp.getInterest());
+			ps.setString(11, emp.getMarriage());
+			ps.setString(12, emp.getMobilePhone());
+			ps.setInt(13, emp.getModifyier());
+			ps.setString(14, emp.getName());
+			ps.setString(15, emp.getNation());
+			ps.setString(16, emp.getPassword());
+			ps.setString(17, emp.getPayCard());
+			ps.setString(18, emp.getPhone());
+			ps.setInt(19, emp.getRole());
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.closeConnection(conn);
+		}
+		return emp;
+	}
+
+	@Override
+	public boolean delete(int id) throws Exception {
+		Connection conn=null;
+		PreparedStatement ps=null;
+		try {
+			conn=DBUtils.getConnection();
+			ps=conn.prepareStatement("delete * from emp where id=?");
+			ps.setInt(1, id);
+			if(ps.executeUpdate()>0){
+				return true;
+			}else{
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.closeConnection(conn);
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modify(Emp emp) throws Exception {
+		Connection conn=null;
+		PreparedStatement ps=null;
+		try {
+			conn=DBUtils.getConnection();
+			ps=conn.prepareStatement("update emp set account=?,address=?,createDate=?" +
+					",department=?,education=?,email=?,emp=?,gender=?,idCard=?,interest=?" +
+					",marriage=?,mobilePhone=?,modifyier=?,name=?,nation=?,password=?" +
+					",payCard=?,phone=?,role=?where id=?");
+			ps.setString(1,emp.getAccount());
+			ps.setString(2, emp.getAddress());
+			ps.setDate(3, new java.sql.Date(emp.getCreateDate().getTime()));
+			ps.setInt(4, emp.getDepartment());
+			ps.setString(5, emp.getEducation());
+			ps.setString(6, emp.getEmail());
+			ps.setLong(7, emp.getEmp());
+			ps.setInt(8, emp.getGender());
+			ps.setString(9, emp.getIdCard());
+			ps.setString(10, emp.getInterest());
+			ps.setString(11, emp.getMarriage());
+			ps.setString(12, emp.getMobilePhone());
+			ps.setInt(13, emp.getModifyier());
+			ps.setString(14, emp.getName());
+			ps.setString(15, emp.getNation());
+			ps.setString(16, emp.getPassword());
+			ps.setString(17, emp.getPayCard());
+			ps.setString(18, emp.getPhone());
+			ps.setInt(19, emp.getRole());
+			ps.setLong(20, emp.getId());
+			if(ps.executeUpdate()>0){
+				return true;
+			}else{
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.closeConnection(conn);
+		}
+		return false;
+	}
+
+	@Override
+	public Emp findById(int id) throws Exception {
+		Connection conn=null;
+		PreparedStatement ps=null;
+		Emp emp=new Emp();
+		try {
+			conn=DBUtils.getConnection();
+			ps=conn.prepareStatement("select * from emp where id=?");
+			ps.setInt(1, id);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()){
+				emp.setAccount(rs.getString("account"));
+				emp.setAddress(rs.getString("address"));
+				emp.setCreateDate(rs.getDate("createDate"));
+				emp.setDepartment(rs.getInt("department"));
+				emp.setEducation(rs.getString("education"));
+				emp.setEmail(rs.getString("email"));
+				emp.setEmp(rs.getLong("emp"));
+				emp.setGender(rs.getInt("gender"));
+				emp.setId(rs.getLong("id"));
+				emp.setIdCard(rs.getString("idCard"));
+				emp.setInterest(rs.getString("interest"));
+				emp.setMarriage(rs.getString("marriage"));
+				emp.setMobilePhone(rs.getString("mobilePhone"));
+				emp.setModifyier(rs.getInt("modifyier"));
+				emp.setName(rs.getString("name"));
+				emp.setNation(rs.getString("nation"));
+				emp.setPassword(rs.getString("password"));
+				emp.setPayCard(rs.getString("payCard"));
+				emp.setPhone(rs.getString("phone"));
+				emp.setRole(rs.getInt("role"));
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.closeConnection(conn);
+		}
+		return emp;
+	}
+
+	@Override
+	public List<Emp> findByName(String name) throws Exception {
+		Connection conn=null;
+		PreparedStatement ps=null;
+		List<Emp>lists=new ArrayList<Emp>();
+		try {
+			conn=DBUtils.getConnection();
+			ps=conn.prepareStatement("select * from emp where name=?");
+			ps.setString(1, name);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()){
+				Emp emp=new Emp();
+				emp.setAccount(rs.getString("account"));
+				emp.setAddress(rs.getString("address"));
+				emp.setCreateDate(rs.getDate("createDate"));
+				emp.setDepartment(rs.getInt("department"));
+				emp.setEducation(rs.getString("education"));
+				emp.setEmail(rs.getString("email"));
+				emp.setEmp(rs.getLong("emp"));
+				emp.setGender(rs.getInt("gender"));
+				emp.setId(rs.getLong("id"));
+				emp.setIdCard(rs.getString("idCard"));
+				emp.setInterest(rs.getString("interest"));
+				emp.setMarriage(rs.getString("marriage"));
+				emp.setMobilePhone(rs.getString("mobilePhone"));
+				emp.setModifyier(rs.getInt("modifyier"));
+				emp.setName(rs.getString("name"));
+				emp.setNation(rs.getString("nation"));
+				emp.setPassword(rs.getString("password"));
+				emp.setPayCard(rs.getString("payCard"));
+				emp.setPhone(rs.getString("phone"));
+				emp.setRole(rs.getInt("role"));
+				lists.add(emp);
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.closeConnection(conn);
+		}
+		return lists;
+	}
+
+	@Override
+	public List<Emp> findAll() throws Exception {
+		Connection conn=null;
+		PreparedStatement ps=null;
+		List<Emp>lists=new ArrayList<Emp>();
+		try {
+			conn=DBUtils.getConnection();
+			ps=conn.prepareStatement("select * from emp");
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()){
+				Emp emp=new Emp();
+				emp.setAccount(rs.getString("account"));
+				emp.setAddress(rs.getString("address"));
+				emp.setCreateDate(rs.getDate("createDate"));
+				emp.setDepartment(rs.getInt("department"));
+				emp.setEducation(rs.getString("education"));
+				emp.setEmail(rs.getString("email"));
+				emp.setEmp(rs.getLong("emp"));
+				emp.setGender(rs.getInt("gender"));
+				emp.setId(rs.getLong("id"));
+				emp.setIdCard(rs.getString("idCard"));
+				emp.setInterest(rs.getString("interest"));
+				emp.setMarriage(rs.getString("marriage"));
+				emp.setMobilePhone(rs.getString("mobilePhone"));
+				emp.setModifyier(rs.getInt("modifyier"));
+				emp.setName(rs.getString("name"));
+				emp.setNation(rs.getString("nation"));
+				emp.setPassword(rs.getString("password"));
+				emp.setPayCard(rs.getString("payCard"));
+				emp.setPhone(rs.getString("phone"));
+				emp.setRole(rs.getInt("role"));
+				lists.add(emp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.closeConnection(conn);
+		}
+		return lists;
+	}
+}

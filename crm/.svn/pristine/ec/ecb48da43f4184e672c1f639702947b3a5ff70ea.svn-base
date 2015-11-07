@@ -1,0 +1,262 @@
+package com.tarena.crm.entity;
+
+import java.util.Date;
+
+
+/**
+ * TbEmp entity. @author MyEclipse Persistence Tools
+ */
+
+public class TbEmp  implements java.io.Serializable {
+
+
+    // Fields    
+
+     private Long id;
+     private String EName;
+     private Integer EGenderId;
+     private String ENation;
+     private String EEducational;
+     private String EPhone;
+     private String EPayCard;
+     private String EIdCard;
+     private Long EEmpid;
+     private String EAccount;
+     private String EPassword;
+     private String EMarriage;
+     private Integer EPartid;
+     private String EInterest;
+     private String EMobilePhone;
+     private String EAddress;
+     private String EEmail;
+     private Date ECreateDate;
+     private Integer EModifyEmpid;
+     private Boolean EDeleteStatus;
+     private Integer EDepartmentid;
+
+
+    // Constructors
+
+    /** default constructor */
+    public TbEmp() {
+    }
+
+	/** minimal constructor */
+    public TbEmp(String EName, Integer EGenderId, String EPayCard, String EIdCard, Long EEmpid, String EAccount, String EPassword, Integer EPartid, String EMobilePhone, Date ECreateDate, Integer EDepartmentid) {
+        this.EName = EName;
+        this.EGenderId = EGenderId;
+        this.EPayCard = EPayCard;
+        this.EIdCard = EIdCard;
+        this.EEmpid = EEmpid;
+        this.EAccount = EAccount;
+        this.EPassword = EPassword;
+        this.EPartid = EPartid;
+        this.EMobilePhone = EMobilePhone;
+        this.ECreateDate = ECreateDate;
+        this.EDepartmentid = EDepartmentid;
+    }
+    
+    /** full constructor */
+    public TbEmp(String EName, Integer EGenderId, String ENation, String EEducational, String EPhone, String EPayCard, String EIdCard, Long EEmpid, String EAccount, String EPassword, String EMarriage, Integer EPartid, String EInterest, String EMobilePhone, String EAddress, String EEmail, Date ECreateDate, Integer EModifyEmpid, Boolean EDeleteStatus, Integer EDepartmentid) {
+        this.EName = EName;
+        this.EGenderId = EGenderId;
+        this.ENation = ENation;
+        this.EEducational = EEducational;
+        this.EPhone = EPhone;
+        this.EPayCard = EPayCard;
+        this.EIdCard = EIdCard;
+        this.EEmpid = EEmpid;
+        this.EAccount = EAccount;
+        this.EPassword = EPassword;
+        this.EMarriage = EMarriage;
+        this.EPartid = EPartid;
+        this.EInterest = EInterest;
+        this.EMobilePhone = EMobilePhone;
+        this.EAddress = EAddress;
+        this.EEmail = EEmail;
+        this.ECreateDate = ECreateDate;
+        this.EModifyEmpid = EModifyEmpid;
+        this.EDeleteStatus = EDeleteStatus;
+        this.EDepartmentid = EDepartmentid;
+    }
+
+   
+    // Property accessors
+
+    public Long getId() {
+        return this.id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEName() {
+        return this.EName;
+    }
+    
+    public void setEName(String EName) {
+        this.EName = EName;
+    }
+
+    public Integer getEGenderId() {
+        return this.EGenderId;
+    }
+    
+    public void setEGenderId(Integer EGenderId) {
+        this.EGenderId = EGenderId;
+    }
+
+    public String getENation() {
+        return this.ENation;
+    }
+    
+    public void setENation(String ENation) {
+        this.ENation = ENation;
+    }
+
+    public String getEEducational() {
+        return this.EEducational;
+    }
+    
+    public void setEEducational(String EEducational) {
+        this.EEducational = EEducational;
+    }
+
+    public String getEPhone() {
+        return this.EPhone;
+    }
+    
+    public void setEPhone(String EPhone) {
+        this.EPhone = EPhone;
+    }
+
+    public String getEPayCard() {
+        return this.EPayCard;
+    }
+    
+    public void setEPayCard(String EPayCard) {
+        this.EPayCard = EPayCard;
+    }
+
+    public String getEIdCard() {
+        return this.EIdCard;
+    }
+    
+    public void setEIdCard(String EIdCard) {
+        this.EIdCard = EIdCard;
+    }
+
+    public Long getEEmpid() {
+        return this.EEmpid;
+    }
+    
+    public void setEEmpid(Long EEmpid) {
+        this.EEmpid = EEmpid;
+    }
+
+    public String getEAccount() {
+        return this.EAccount;
+    }
+    
+    public void setEAccount(String EAccount) {
+        this.EAccount = EAccount;
+    }
+
+    public String getEPassword() {
+        return this.EPassword;
+    }
+    
+    public void setEPassword(String EPassword) {
+        this.EPassword = EPassword;
+    }
+
+    public String getEMarriage() {
+        return this.EMarriage;
+    }
+    
+    public void setEMarriage(String EMarriage) {
+        this.EMarriage = EMarriage;
+    }
+
+    public Integer getEPartid() {
+        return this.EPartid;
+    }
+    
+    public void setEPartid(Integer EPartid) {
+        this.EPartid = EPartid;
+    }
+
+    public String getEInterest() {
+        return this.EInterest;
+    }
+    
+    public void setEInterest(String EInterest) {
+        this.EInterest = EInterest;
+    }
+
+    public String getEMobilePhone() {
+        return this.EMobilePhone;
+    }
+    
+    public void setEMobilePhone(String EMobilePhone) {
+        this.EMobilePhone = EMobilePhone;
+    }
+
+    public String getEAddress() {
+        return this.EAddress;
+    }
+    
+    public void setEAddress(String EAddress) {
+        this.EAddress = EAddress;
+    }
+
+    public String getEEmail() {
+        return this.EEmail;
+    }
+    
+    public void setEEmail(String EEmail) {
+        this.EEmail = EEmail;
+    }
+
+    public Date getECreateDate() {
+        return this.ECreateDate;
+    }
+    
+    public void setECreateDate(Date ECreateDate) {
+        this.ECreateDate = ECreateDate;
+    }
+
+    public Integer getEModifyEmpid() {
+        return this.EModifyEmpid;
+    }
+    
+    public void setEModifyEmpid(Integer EModifyEmpid) {
+        this.EModifyEmpid = EModifyEmpid;
+    }
+
+    public Boolean getEDeleteStatus() {
+        return this.EDeleteStatus;
+    }
+    
+    public void setEDeleteStatus(Boolean EDeleteStatus) {
+        this.EDeleteStatus = EDeleteStatus;
+    }
+
+    public Integer getEDepartmentid() {
+        return this.EDepartmentid;
+    }
+    
+    public void setEDepartmentid(Integer EDepartmentid) {
+        this.EDepartmentid = EDepartmentid;
+    }
+   
+
+
+
+
+
+
+
+
+}

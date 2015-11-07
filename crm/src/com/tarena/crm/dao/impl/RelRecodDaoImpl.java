@@ -1,0 +1,185 @@
+package com.tarena.crm.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.tarena.crm.entity.Relrecord;
+import com.tarena.db.DBUtils;
+
+public class RelRecodDaoImpl extends BaseDaoImpl<Relrecord> {
+
+	@Override
+	public Relrecord add(Relrecord entity) throws Exception {
+		Connection conn=null;
+		PreparedStatement ps=null;
+		try {
+			conn=DBUtils.getConnection();
+			ps=conn.prepareStatement("insert into RelRecord(custom,time,nextTime" +
+					",type,emp,theme,remarks" +
+					")values(?,?,?,?,?,?,?)");
+			ps.setLong(1,entity.getCustom());
+			ps.setDate(2, new java.sql.Date(entity.getTime().getTime()));
+			ps.setDate(3, new java.sql.Date(entity.getNextTime().getTime()));
+			ps.setString(4, entity.getType());
+			ps.setLong(5,entity.getEmp());
+			ps.setString(6, entity.getTheme());
+			ps.setString(7, entity.getRemarks());
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.closeConnection(conn);
+		}
+		return entity;
+	}
+
+	@Override
+	public boolean delete(long id) throws Exception {
+		Connection conn=null;
+		PreparedStatement ps=null;
+		try {
+			conn=DBUtils.getConnection();
+			ps=conn.prepareStatement("delete from RelRecord where id=?");
+			ps.setLong(1, id);
+			if(ps.executeUpdate()>0){
+				return true;
+			}else{
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.closeConnection(conn);
+		}
+		return false;
+	}
+
+	@Override
+	public boolean modify(Relrecord entity) throws Exception {
+		Connection conn=null;
+		PreparedStatement ps=null;
+		try {
+			conn=DBUtils.getConnection();
+			ps=conn.prepareStatement("update Relrecord set custom=?,time=?,nextTime=?" +
+					",type=?,emp=?,theme=?,remarks=? where id=?");
+			ps.setLong(1,entity.getCustom());
+			ps.setDate(2, new java.sql.Date(entity.getTime().getTime()));
+			ps.setDate(3, new java.sql.Date(entity.getNextTime().getTime()));
+			ps.setString(4, entity.getType());
+			ps.setLong(5,entity.getEmp());
+			ps.setString(6, entity.getTheme());
+			ps.setString(7, entity.getRemarks());
+			ps.setLong(8, entity.getId());
+			if(ps.executeUpdate()>0){
+				return true;
+			}else{
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.closeConnection(conn);
+		}
+		return false;
+	}
+
+	@Override
+	public Relrecord findById(long id) throws Exception {
+		Connection conn=null;
+		PreparedStatement ps=null;
+		Relrecord relrecord=new Relrecord();
+		try {
+			conn=DBUtils.getConnection();
+			ps=conn.prepareStatement("select * from Relrecord where id=?");
+			ps.setLong(1, id);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()){
+				relrecord.setCustom(rs.getLong("custom"));
+				relrecord.setEmp(rs.getLong("emp"));
+				relrecord.setId(rs.getLong("id"));
+				relrecord.setNextTime(rs.getDate("nextTime"));
+				relrecord.setRemarks(rs.getString("remarks"));
+				relrecord.setTheme(rs.getString("theme"));
+				relrecord.setTime(rs.getDate("time"));
+				relrecord.setType(rs.getString("type"));
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.closeConnection(conn);
+		}
+		return relrecord;
+	}
+
+	@Override
+	public List<Relrecord> findByName(String name) throws Exception {
+		Connection conn=null;
+		PreparedStatement ps=null;
+		List<Relrecord>lists=new ArrayList<Relrecord>();
+		try {
+			conn=DBUtils.getConnection();
+			ps=conn.prepareStatement("select * from Relrecord where name=?");
+			ps.setString(1,name);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()){
+				Relrecord relrecord=new Relrecord();
+				relrecord.setCustom(rs.getLong("custom"));
+				relrecord.setEmp(rs.getLong("emp"));
+				relrecord.setId(rs.getLong("id"));
+				relrecord.setNextTime(rs.getDate("nextTime"));
+				relrecord.setRemarks(rs.getString("remarks"));
+				relrecord.setTheme(rs.getString("theme"));
+				relrecord.setTime(rs.getDate("time"));
+				relrecord.setType(rs.getString("type"));
+				lists.add(relrecord);
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.closeConnection(conn);
+		}
+		return lists;
+	}
+
+	@Override
+	public List<Relrecord> findAll() throws Exception {
+		Connection conn=null;
+		PreparedStatement ps=null;
+		List<Relrecord>lists=new ArrayList<Relrecord>();
+		try {
+			conn=DBUtils.getConnection();
+			ps=conn.prepareStatement("select * from Relrecord");
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()){
+				Relrecord relrecord=new Relrecord();
+				relrecord.setCustom(rs.getLong("custom"));
+				relrecord.setEmp(rs.getLong("emp"));
+				relrecord.setId(rs.getLong("id"));
+				relrecord.setNextTime(rs.getDate("nextTime"));
+				relrecord.setRemarks(rs.getString("remarks"));
+				relrecord.setTheme(rs.getString("theme"));
+				relrecord.setTime(rs.getDate("time"));
+				relrecord.setType(rs.getString("type"));
+				lists.add(relrecord);
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			DBUtils.closeConnection(conn);
+		}
+		return lists;
+	}
+//
+	public static void main(String[] args) {
+		RelRecodDaoImpl rr=new RelRecodDaoImpl();
+		try {
+			System.out.println(rr.findAll());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
